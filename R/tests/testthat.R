@@ -26,6 +26,8 @@ if (identical(Sys.getenv("NOT_CRAN"), "true")) {
   on.exit({
     spark_disconnect_all()
   })
+  
+  if (!all(file.exists(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]]))) stop("files not found")
 
   filter <- Sys.getenv("TESTTHAT_FILTER", unset = "")
   if (identical(filter, "")) filter <- NULL
