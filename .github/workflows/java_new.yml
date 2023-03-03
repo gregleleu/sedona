@@ -25,11 +25,10 @@ jobs:
         cache: 'maven'
    # - run: git submodule update --init --recursive # Checkout Git submodule if necessary
     - name: TEMP out
-        if: runner.os != 'Windows'
-        uses: actions/cache@v3
-        with:
-          path: ~/staging
-          key: staging_cache
+      uses: actions/cache@v3
+      with:
+        path: ~/staging
+        key: staging_cache
     - env:
         SPARK_VERSION: ${{ matrix.spark }}
         SCALA_VERSION: ${{ matrix.scala }}
