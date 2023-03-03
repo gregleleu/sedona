@@ -22,6 +22,14 @@ jobs:
       # `remotes::install_github()`
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Get Sedona libraries
+        uses: actions/download-artifact@v3
+        with: 
+          name: generated-jars
+          path: jars
+      - name: List 
+        run: |
+          ls -R
       - name: Delete existing R binaries
         run: |
           for b in R Rscript
@@ -66,14 +74,6 @@ jobs:
         with:
           path: ~/spark
           key: apache.sedona-apache-spark-${{ steps.os-name.outputs.os-name }}-${{ env.SPARK_VERSION }}
-      - name: Get Sedona libraries
-        uses: actions/download-artifact@v3
-        with: 
-          name: generated-jars
-          path: jars
-      - name: List 
-        run: |
-          ls jars
       - name: Build R package
         env:
           WARNINGS_ARE_ERRORS: 1
