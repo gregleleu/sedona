@@ -26,7 +26,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: generated-jars
-          path: ~/jars
+          path: '~/jars'
       - name: List 
         run: |
           find -name sedona-spark*.jar -exec readlink -f {} \;
