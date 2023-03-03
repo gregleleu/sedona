@@ -31,10 +31,12 @@ jobs:
         run: |
           find -name sedona-spark*.jar -exec readlink -f {} \;
           find -name sedona-viz*.jar -exec readlink -f {} \;
+          export SEDONA_JAR_FILES="/home/runner/work/sedona/sedona/jars/sedona-spark-shaded-3.0_2.13-1.4.0-SNAPSHOT.jar:/home/runner/work/sedona/sedona/jars/sedona-viz-3.0_2.13-1.4.0-SNAPSHOT.jar"
       - name: Do from R
         run: |
           print(R.version)
           print(getwd())
-          print(dir(recursive = TRUE))
-          print(dir("/home/runner/work/sedona/sedona/", recursive = TRUE))
+          print(dir(recursive = TRUE, full.names = TRUE))
+          print(dir("/home/runner/work/sedona/sedona/", recursive = TRUE, full.names = TRUE))
+          file.exists(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]])
         shell: Rscript {0}
