@@ -28,7 +28,7 @@ spark_dependencies <- function(spark_version, scala_version, ...) {
   }
 
   packages <- c(
-    "org.datasyslab:geotools-wrapper:1.3.0-27.2",
+    "org.datasyslab:geotools-wrapper:1.4.0-28.2",
     "edu.ucar:cdm-core:5.4.2",
     "org.locationtech.jts:jts-core:1.19.0",
     "org.wololo:jts2geojson:0.16.1"
