@@ -11,7 +11,7 @@ jobs:
       fail-fast: true
       matrix:
         spark: [3.3.0]
-        scala: [2.13.8]
+        scala: [2.12.15]
         r: [release]
 
     env:
