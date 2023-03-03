@@ -64,7 +64,7 @@ jobs:
         run: |
           # `os_name` will be like "Ubuntu-20.04.1-LTS"
           OS_NAME=$(lsb_release -ds | sed 's/\s/-/g')
-          echo "os-name::$OS_NAME" >> $GITHUB_OUTPUT
+          echo "os-name=$OS_NAME" >> $GITHUB_OUTPUT
       - name: Cache Spark installations
         if: runner.os != 'Windows'
         uses: actions/cache@master
