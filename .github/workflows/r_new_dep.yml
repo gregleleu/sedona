@@ -73,7 +73,7 @@ jobs:
           path: jars
       - name: List 
         run: |
-          ls staging
+          ls jars
       - name: Build R package
         env:
           WARNINGS_ARE_ERRORS: 1
@@ -90,7 +90,7 @@ jobs:
       - name: Run tests
         run: |
           export SPARKLYR_LOG_FILE='/tmp/sparklyr.log'
-          source ./.github/workflows/scripts/prepare_sparklyr_sedona_test_env.sh
+          export SEDONA_JAR_FILES="jars/sedona-spark-shaded-3.0_2.12-1.4.0-SNAPSHOT.jar:jars/sedona-viz-3.0_2.12-1.4.0-SNAPSHOT.jar""
           echo "Apache Sedona jar files: ${SEDONA_JAR_FILES}"
           cd ./R/tests
           NOT_CRAN='true' Rscript testthat.R
