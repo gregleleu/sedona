@@ -1,8 +1,7 @@
 name: R build
 
 on:
-  workflow_call:
-    inputs:
+  workflow_call
 
 jobs:
   build:
