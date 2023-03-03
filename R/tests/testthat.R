@@ -27,6 +27,7 @@ if (identical(Sys.getenv("NOT_CRAN"), "true")) {
     spark_disconnect_all()
   })
   
+  print(dir("/home/runner/work/sedona/sedona", recursive = TRUE, full.names = TRUE))
   print(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]])
   
   if (!all(file.exists(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]]))) stop("files not found")
