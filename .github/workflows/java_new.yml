@@ -27,14 +27,14 @@ jobs:
     - name: TEMP out
       uses: actions/cache@v3
       with:
-        path: ~/staging
+        path: staging
         key: staging_cache
     - env:
         SPARK_VERSION: ${{ matrix.spark }}
         SCALA_VERSION: ${{ matrix.scala }}
         SKIP_TESTS: ${{ matrix.skipTests }}
       run: mvn -q clean install -Dscala=${SCALA_VERSION:0:4} -Dspark.version=${SPARK_VERSION} ${SKIP_TESTS}
-    - run: mkdir staging
+    - run: mkdir -p staging
     - run: cp core/target/sedona-*.jar staging
     - run: cp sql/target/sedona-*.jar staging
     - run: cp viz/target/sedona-*.jar staging
@@ -43,4 +43,4 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: generated-jars
-        path: ~/staging
+        path: staging
