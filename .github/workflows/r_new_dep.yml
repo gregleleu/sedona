@@ -30,7 +30,7 @@ jobs:
       - name: List 
         run: |
           ls -R
-      # - name: Delete existing R binaries
+      - name: Delete existing R binaries
         run: |
           for b in R Rscript
           do
