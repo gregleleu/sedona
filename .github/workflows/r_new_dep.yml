@@ -22,22 +22,6 @@ jobs:
       # `remotes::install_github()`
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Get Sedona libraries
-        uses: actions/download-artifact@v3
-        with: 
-          name: generated-jars
-          path: jars
-      - name: List 
-        run: |
-          ls -R
-      - name: Do from R
-        run: |
-          print(R.version)
-          print(getwd())
-          print(dir(recursive = TRUE, full.names = TRUE))
-          print(dir("/home/runner/work/sedona/sedona", recursive = TRUE, full.names = TRUE))
-          file.exists(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]])
-        shell: Rscript {0}
       - name: Delete existing R binaries
         run: |
           for b in R Rscript
@@ -82,6 +66,22 @@ jobs:
         with:
           path: ~/spark
           key: apache.sedona-apache-spark-${{ steps.os-name.outputs.os-name }}-${{ env.SPARK_VERSION }}
+      - name: Get Sedona libraries
+        uses: actions/download-artifact@v3
+        with: 
+          name: generated-jars
+          path: jars
+      - name: List 
+        run: |
+          ls -R
+      - name: Do from R
+        run: |
+          print(R.version)
+          print(getwd())
+          print(dir(recursive = TRUE, full.names = TRUE))
+          print(dir("/home/runner/work/sedona/sedona", recursive = TRUE, full.names = TRUE))
+          file.exists(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]])
+        shell: Rscript {0}
       # - name: Build R package
       #   env:
       #     WARNINGS_ARE_ERRORS: 1
