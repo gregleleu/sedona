@@ -1,12 +1,8 @@
 name: R build
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - '*'
+  workflow_call:
+    inputs:
 
 jobs:
   build:

@@ -1,0 +1,16 @@
+name: Complete flow
+
+on:
+  push:
+    branches:
+      - r-workflow
+  pull_request:
+    branches:
+      - '*'
+      
+jobs:
+  build-java:
+    uses: ./.github/workflows/java_new.yml
+  build-r:
+    needs: build-java
+     uses: ./.github/workflows/r_new_dep.yml
