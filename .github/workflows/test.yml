@@ -1,0 +1,33 @@
+name: R build
+
+on:
+  workflow_call
+
+jobs:
+  build:
+
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: true
+      matrix:
+        spark: [3.3.0]
+        scala: [2.12.15]
+        r: [release]
+
+    env:
+      SPARK_VERSION: ${{ matrix.spark }}
+      SCALA_VERSION: ${{ matrix.scala }}
+      # Ensure the temporary auth token for this workflow, instead of the
+      # bundled GitHub PAT from the `remotes` package is used for
+      # `remotes::install_github()`
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Get Sedona libraries
+        uses: actions/download-artifact@v3
+        with: 
+          name: generated-jars
+          path: jars
+      - name: List 
+        run: |
+          find -name sedona-spark*.jar -exec readlink -f {} \;
+          find -name sedona-viz*.jar -exec readlink -f {} \;

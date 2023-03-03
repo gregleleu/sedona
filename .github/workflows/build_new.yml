@@ -13,4 +13,4 @@ jobs:
     uses: ./.github/workflows/java_new.yml
   build-r:
     needs: build-java
-    uses: ./.github/workflows/r_new_dep.yml
+    uses: ./.github/workflows/test.yml
