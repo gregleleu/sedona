@@ -34,12 +34,12 @@ jobs:
     #     SCALA_VERSION: ${{ matrix.scala }}
     #     SKIP_TESTS: ${{ matrix.skipTests }}
     #   run: mvn -q clean install -Dscala=${SCALA_VERSION:0:4} -Dspark.version=${SPARK_VERSION} ${SKIP_TESTS}
-    - run: mkdir -p staging
-    - run: cp core/target/sedona-*.jar staging
-    - run: cp sql/target/sedona-*.jar staging
-    - run: cp viz/target/sedona-*.jar staging
-    - run: cp python-adapter/target/sedona-*.jar staging
-    - run: cp spark-shaded/target/sedona-*.jar staging
+    # - run: mkdir staging
+    # - run: cp core/target/sedona-*.jar staging
+    # - run: cp sql/target/sedona-*.jar staging
+    # - run: cp viz/target/sedona-*.jar staging
+    # - run: cp python-adapter/target/sedona-*.jar staging
+    # - run: cp spark-shaded/target/sedona-*.jar staging
     - uses: actions/upload-artifact@v3
       with:
         name: generated-jars
