@@ -31,3 +31,10 @@ jobs:
         run: |
           find -name sedona-spark*.jar -exec readlink -f {} \;
           find -name sedona-viz*.jar -exec readlink -f {} \;
+      - name: Do from R
+        run: |
+          print(R.version)
+          print(getwd())
+          print(dir(recursive = TRUE))
+          print(dir("/home/runner/work/sedona/sedona/", recursive = TRUE))
+        shell: Rscript {0}
