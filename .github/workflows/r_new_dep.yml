@@ -87,7 +87,7 @@ jobs:
       - name: Run tests
         run: |
           export SPARKLYR_LOG_FILE='/tmp/sparklyr.log'
-          export SEDONA_JAR_FILES="/home/runner/work/sedona/sedona/jars/sedona-spark-shaded-3.0_2.13-1.4.0-SNAPSHOT.jar:/home/runner/work/sedona/sedona/jars/sedona-viz-3.0_2.13-1.4.0-SNAPSHOT.jar"
+          export SEDONA_JAR_FILES="/home/runner/work/sedona/sedona/jars/sedona-spark-shaded-3.0_2.12-1.4.0-SNAPSHOT.jar:/home/runner/work/sedona/sedona/jars/sedona-viz-3.0_2.12-1.4.0-SNAPSHOT.jar"
           echo "Apache Sedona jar files: ${SEDONA_JAR_FILES}"
           cd ./R/tests
           NOT_CRAN='true' Rscript testthat.R
