@@ -66,13 +66,14 @@ jobs:
         with:
           path: ~/spark
           key: apache.sedona-apache-spark-${{ steps.os-name.outputs.os-name }}-${{ env.SPARK_VERSION }}
-      - name: Build Sedona libraries
+      - name: Get Sedona libraries
+        uses: actions/download-artifact@v3
+        with: 
+          name: generated-jars
+          path: jars
+      - name: List 
         run: |
-          if [ ${SPARK_VERSION:0:1} == "3" ]; then
-            mvn -q clean install -DskipTests -Dscala=${SCALA_VERSION:0:4} -Dspark=3.0 -Dgeotools
-          else
-            mvn -q clean install -DskipTests -Dscala=${SCALA_VERSION:0:4} -Dspark=2.4 -Dgeotools
-          fi
+          ls staging
       - name: Build R package
         env:
           WARNINGS_ARE_ERRORS: 1
