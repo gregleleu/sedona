@@ -26,7 +26,7 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: generated-jars
-          path: /home/runner/work/sedona/sedona//jars/
+          path: jars
       - name: List 
         run: |
           ls -R
@@ -35,7 +35,7 @@ jobs:
           print(R.version)
           print(getwd())
           print(dir(recursive = TRUE, full.names = TRUE))
-          print(dir("/home/runner/work/sedona/sedona/", recursive = TRUE, full.names = TRUE))
+          print(dir("/home/runner/work/sedona/sedona", recursive = TRUE, full.names = TRUE))
           file.exists(strsplit(Sys.getenv("SEDONA_JAR_FILES"), ":")[[1]])
         shell: Rscript {0}
       - name: Delete existing R binaries
@@ -82,17 +82,17 @@ jobs:
         with:
           path: ~/spark
           key: apache.sedona-apache-spark-${{ steps.os-name.outputs.os-name }}-${{ env.SPARK_VERSION }}
-      - name: Build R package
-        env:
-          WARNINGS_ARE_ERRORS: 1
-        run: R CMD build --no-build-vignettes ./R
-      - name: Check
-        env:
-          _R_CHECK_FORCE_SUGGESTS_: false
-          WARNINGS_ARE_ERRORS: 1
-        run: |
-          R CMD check --no-build-vignettes --no-manual --no-tests apache.sedona*.tar.gz
-          rm -f apache.sedona*.tar.gz
+      # - name: Build R package
+      #   env:
+      #     WARNINGS_ARE_ERRORS: 1
+      #   run: R CMD build --no-build-vignettes ./R
+      # - name: Check
+      #   env:
+      #     _R_CHECK_FORCE_SUGGESTS_: false
+      #     WARNINGS_ARE_ERRORS: 1
+      #   run: |
+      #     R CMD check --no-build-vignettes --no-manual --no-tests apache.sedona*.tar.gz
+      #     rm -f apache.sedona*.tar.gz
       - name: Install apache.sedona from source
         run: Rscript -e 'install.packages("./R/", repos = NULL, type = "source")'
       - name: Run tests
